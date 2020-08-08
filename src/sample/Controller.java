@@ -5,14 +5,18 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.util.Date;
 
 public class Controller {
     @FXML
     Canvas canvas;
+    @FXML
+    Text gameOverMessage;
     private final int canvasSize = 800;
     Game game;
+
     public Controller() {
         canvas = new Canvas(canvasSize, canvasSize);
         game = new Game();
@@ -49,6 +53,11 @@ public class Controller {
     int selectedY;
 
     public void mouseTouch (MouseEvent event) {
+
+        if (game.isGameOver) {
+            gameOverMessage.setText("Game Over");
+            return;
+        }
 
         if (!wasSelected) {
 
